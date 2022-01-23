@@ -1,11 +1,11 @@
 import path from 'path'
 import { defineConfig } from 'vite'
-import preact from '@preact/preset-vite'
 import { getScopedName } from './src/build/getScopedName.js'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig(({ mode }) => {
   return {
-    plugins: [preact()],
+    plugins: [react()],
     css: {
       modules: {
         generateScopedName: (exportedName, filePath) => {

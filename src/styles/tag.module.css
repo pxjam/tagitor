@@ -1,0 +1,23 @@
+.tag {
+  display: inline-block;
+  background: var(--color-accent);
+  color: white;
+  padding: .5em 1em;
+  cursor: grab;
+  transition: .3s;
+  user-select: none;
+}
+
+.cross {
+  background: transparent;
+  border: none;
+  appearance: none;
+  font-size: 1em;
+  transform: translateX(.5em);
+  cursor: pointer;
+}
+
+.danger {
+  background: var(--color-hot);
+}
+

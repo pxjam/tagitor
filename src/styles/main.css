@@ -2,7 +2,7 @@
   --grey-l: #d2d5dd;
   --grey-m: #9aa7b4;
   --grey-d: #424559;
-  --blue-accent: #76b0ff;
+  --color-accent: #76b0ff;
   --color-accent-light: #97d9ff;
   --color-hot: #c53c4b;
 }
@@ -18,8 +18,13 @@ body {
   color: #444;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-accent);
 }

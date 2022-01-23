@@ -7,10 +7,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "preact": "^10.5.15"
+    "autosize": "^5.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.1.5",
+    "@vitejs/plugin-react": "^1.1.4",
     "incstr": "^1.2.3",
     "path": "^0.12.7",
     "vite": "^2.7.2"

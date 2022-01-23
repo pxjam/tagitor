@@ -1,4 +1,14 @@
 .textarea {
-  border: 2px solid var(--grey-l);
+  border: 3px solid var(--grey-l);
+  display: block;
+  min-height: 120px;
+  width: 100%;
+  padding: calc(10px + 1vmin);
+  -ms-flex: 50% 1 1;
+  flex: 50% 1 1;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-right: calc(10px + 3vmin);
   resize: none;
+  line-height: 1.5;
 }

@@ -1,9 +1,10 @@
 .button {
   padding: .5em 1em;
-  background: var(--blue-accent);
+  background: var(--color-accent);
   text-transform: uppercase;
   font-weight: bold;
   font-size: 20px;
   color: white;
   border: none;
+  cursor: pointer;
 }
