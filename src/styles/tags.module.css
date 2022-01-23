@@ -1,0 +1,10 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-flex;
+  margin-right: var(--unit-xs);
+  margin-bottom: var(--unit-xs);
+}

@@ -3,8 +3,11 @@
   --grey-m: #9aa7b4;
   --grey-d: #424559;
   --color-accent: #76b0ff;
-  --color-accent-light: #97d9ff;
+  --color-accent-light: #c7ddff;
   --color-hot: #c53c4b;
+  --unit: calc(16px + .8vw);
+  --unit-s: calc(10px + .5vw);
+  --unit-xs: calc(6px + .3vw);
 }
 
 html,
@@ -13,9 +16,10 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-  font-family: monospace;
+  font-family: "Courier New", monospace;
   font-weight: 700;
-  color: #444;
+  font-size: var(--unit-s);
+  color: var(--grey-d);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;

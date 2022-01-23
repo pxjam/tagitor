@@ -1,10 +1,22 @@
 .button {
+  display: inline-flex;
   padding: .5em 1em;
-  background: var(--color-accent);
+  background: var(--grey-l);
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 20px;
-  color: white;
+  font-size: var(--unit);
   border: none;
+  border-bottom: 3px solid var(--grey-m);
+  border-right: 3px solid var(--grey-m);
+  transition: .25s;
   cursor: pointer;
+}
+
+.button:hover {
+  background: var(--color-accent-light);
+}
+
+.button:active {
+  background: var(--grey-m);
+  transition: none;
 }

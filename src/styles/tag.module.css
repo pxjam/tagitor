@@ -1,23 +1,33 @@
 .tag {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   background: var(--color-accent);
   color: white;
-  padding: .5em 1em;
   cursor: grab;
   transition: .3s;
+  padding-left: 1em;
   user-select: none;
+  font-size: calc(10px + 1vw);
 }
 
 .cross {
   background: transparent;
   border: none;
   appearance: none;
+  padding: .5em;
+  width: 2.2em;
+  margin-left: .3em;
+  color: var(--grey-d);
   font-size: 1em;
-  transform: translateX(.5em);
   cursor: pointer;
+  transition: .3s;
 }
 
 .danger {
   background: var(--color-hot);
+}
+
+.danger .cross {
+  color: white;
 }
 

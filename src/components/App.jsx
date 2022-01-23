@@ -1,10 +1,11 @@
+import autosize from 'autosize/dist/autosize.js'
+import css from '../styles/app.module.css'
+
 import React, { useEffect, useRef, useState } from 'react'
-import { Tag } from './Tag.jsx'
 import { Button } from './Button.jsx'
 import { removeRepeatingDelimiters } from '../utils/removeRepeats.js'
 import { tagsArrayFromString } from '../utils/tagsArrayFromString.js'
-import autosize from 'autosize/dist/autosize.js'
-import css from '../styles/app.module.css'
+import { Tags } from './Tags.jsx'
 
 export function App() {
   const [tags, setTags] = useState([])
@@ -15,6 +16,11 @@ export function App() {
     let savedTags = localStorage.getItem('tags') || '[]'
     setTags(JSON.parse(savedTags))
   }, [])
+
+  useEffect(() => {
+    autosize(textarea.current)
+    save()
+  }, [tags])
 
   const save = () => {
     localStorage.setItem('tags', JSON.stringify(tags))
@@ -51,19 +57,14 @@ export function App() {
     }
   }
 
-  useEffect(() => {
-    autosize(textarea.current)
-    save()
-  }, [tags])
-
   const removeTag = (idxToRemove) => {
-    const tagsWithoutIt = tags.filter((i, idx) => idx !== idxToRemove)
-    setTags(tagsWithoutIt)
+    const updatedTags = tags.filter((i, idx) => idx !== idxToRemove)
+    setTags(updatedTags)
   }
 
   return (
-    <>
-      <h1>Simple Tag Editor</h1>
+    <div className={css.container}>
+      <h1 className={css.title}>Simple Tag Editor</h1>
 
       <Button text="_ > ," onClick={spaceToComma}/>
 
@@ -76,9 +77,7 @@ export function App() {
         ref={textarea}
       />
 
-      {tags.map((tag, idx) =>
-        <Tag key={`${idx}`} text={tag} onClickRemove={() => removeTag(idx)}/>
-      )}
-    </>
+      <Tags tags={tags} onClickRemove={removeTag}/>
+    </div>
   )
 }
