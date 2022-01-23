@@ -1,0 +1,4 @@
+.textarea {
+  border: 2px solid var(--grey-l);
+  resize: none;
+}
