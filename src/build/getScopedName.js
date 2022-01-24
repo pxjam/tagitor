@@ -14,16 +14,9 @@ const createUniqueIdGenerator = (alphabet) => {
   }
 }
 
-const componentNameIdGenerator = createUniqueIdGenerator('ABCEFGHJKLMNOPQRSTUVWXYZ')
-const localNameIdGenerator = createUniqueIdGenerator('abcefghijklmnopqrstuvwxyz0123456789')
+const alphabet = 'abcefghijklmnopqrstuvwxyzABCEFGHJKLMNOPQRSTUVWXYZ'
+const classNameGenerator = createUniqueIdGenerator(alphabet)
 
-export const getScopedName = (pathName, localName) => {
-  const componentName = pathName
-    .split('/')
-    .slice(-2, -1)[0]
-
-  const localId = localNameIdGenerator(localName)
-  const componentId = componentNameIdGenerator(componentName)
-
-  return `${componentId}${localId}`
+export const getScopedName = (moduleName, localName) => {
+  return classNameGenerator(`${moduleName}_${localName}`)
 }
