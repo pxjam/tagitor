@@ -66,7 +66,10 @@ export function App() {
     <div className={css.container}>
       <h1 className={css.title}>Simple Tag Editor</h1>
 
-      <Button text="_ > ," onClick={spaceToComma}/>
+      <div className={css.bar}>
+        <Button text="_ > ," onClick={spaceToComma}/>
+        <div className={css.count}>{tags.length}</div>
+      </div>
 
       <textarea
         className={css.textarea}
