@@ -11,6 +11,7 @@
   border-right: 3px solid var(--grey-m);
   transition: background .25s;
   border-radius: var(--border-radius);
+  user-select: none;
   cursor: pointer;
 }
 

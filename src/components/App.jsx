@@ -72,7 +72,7 @@ export function App() {
       <div className={css.bar}>
         <div>
           <Button text="_ > ," onClick={spaceToComma}/>
-          <Button text="Unique" onClick={removeDuplicates}/>
+          <Button text="Clean" onClick={removeDuplicates}/>
         </div>
 
         <div className={css.count}>{tags.length}</div>

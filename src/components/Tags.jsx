@@ -23,6 +23,8 @@ export const Tags = ({ tags, onClickRemove, setTags }) => {
   }
 
   const dragOver = (e) => {
+    if (!selected.current) return
+
     if (isBefore(selected.current, e.target)) {
       container.current.insertBefore(selected.current, e.target)
     } else {
