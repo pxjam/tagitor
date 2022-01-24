@@ -8,6 +8,7 @@
   --unit: calc(16px + .8vw);
   --unit-s: calc(10px + .5vw);
   --unit-xs: calc(6px + .3vw);
+  --border-radius: calc(3px + .2vw);
 }
 
 html,
@@ -18,11 +19,15 @@ body {
   margin: 0;
   font-family: "Courier New", monospace;
   font-weight: 700;
-  font-size: var(--unit-s);
+  font-size: var(--unit);
   color: var(--grey-d);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
+}
+
+input, textarea {
+  font-family: inherit;
 }
 
 * {

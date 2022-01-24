@@ -17,9 +17,21 @@
   font-weight: 600;
   resize: none;
   line-height: 1.5;
+  border-radius: var(--border-radius);
 }
 
 .title {
-  font-size: 3em;
+  font-size: 2em;
   margin: 0;
+}
+
+.bar {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.count {
+  color: var(--color-accent);
 }
