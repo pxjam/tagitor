@@ -6,6 +6,7 @@ import { Button } from './Button.jsx'
 import { removeRepeatingDelimiters } from '../utils/removeRepeats.js'
 import { tagsArrayFromString } from '../utils/tagsArrayFromString.js'
 import { Tags } from './Tags.jsx'
+import { arrayUnique } from '../utils/arrayUnique.js'
 
 export function App() {
   const [tags, setTags] = useState([])
@@ -57,6 +58,8 @@ export function App() {
     }
   }
 
+  const removeDuplicates = () => setTags(arrayUnique(tags))
+
   const removeTag = (idxToRemove) => {
     const updatedTags = tags.filter((i, idx) => idx !== idxToRemove)
     setTags(updatedTags)
@@ -67,7 +70,11 @@ export function App() {
       <h1 className={css.title}>Simple Tag Editor</h1>
 
       <div className={css.bar}>
-        <Button text="_ > ," onClick={spaceToComma}/>
+        <div>
+          <Button text="_ > ," onClick={spaceToComma}/>
+          <Button text="Unique" onClick={removeDuplicates}/>
+        </div>
+
         <div className={css.count}>{tags.length}</div>
       </div>
 
@@ -80,7 +87,7 @@ export function App() {
         ref={textarea}
       />
 
-      <Tags tags={tags} onClickRemove={removeTag}/>
+      <Tags tags={tags} onClickRemove={removeTag} setTags={setTags}/>
     </div>
   )
 }

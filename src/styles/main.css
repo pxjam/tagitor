@@ -9,6 +9,7 @@
   --unit-s: calc(10px + .5vw);
   --unit-xs: calc(6px + .3vw);
   --border-radius: calc(3px + .2vw);
+  --font-family: "Courier New", monospace;
 }
 
 html,
@@ -17,7 +18,7 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-  font-family: "Courier New", monospace;
+  font-family: var(--font-family);
   font-weight: 700;
   font-size: var(--unit);
   color: var(--grey-d);
