@@ -4,7 +4,7 @@
   background: var(--color-accent);
   color: white;
   cursor: grab;
-  transition: .3s;
+  transition: background .3s;
   padding-left: 1em;
   user-select: none;
   font-size: calc(10px + 1vw);
@@ -20,7 +20,7 @@
   color: var(--grey-d);
   font-size: 1em;
   cursor: pointer;
-  transition: .3s;
+  transition: background .3s, color .3s;
 }
 
 .danger {
