@@ -1,7 +1,7 @@
 import css from '../styles/tags.module.css'
 import { cls } from '../utils/cls.js'
 import React, { useRef, useState } from 'react'
-// import { arrayMove } from '../utils/arrayMove.js'
+import { arrayMove } from '../utils/arrayMove.js'
 
 export function Tags({ tags, onClickRemove, setTags }) {
   const [removeHoveredIdx, setRemoveHoveredIdx] = useState(false)
@@ -27,9 +27,11 @@ export function Tags({ tags, onClickRemove, setTags }) {
 
     if (isBefore(selected.current, e.target)) {
       container.current.insertBefore(selected.current, e.target)
+      //setTags(arrayMove(tags, ))
     } else {
       container.current.insertBefore(selected.current, e.target.nextSibling)
     }
+
   }
 
   function isBefore(el1, el2) {
@@ -53,7 +55,7 @@ export function Tags({ tags, onClickRemove, setTags }) {
           onDragOver={dragOver}
           key={`${idx}`}
         >
-          {tag}
+          {tag.value}
           <button
             className={css.cross}
             onClick={() => onClickRemove(idx)}

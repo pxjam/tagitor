@@ -4,9 +4,9 @@ import css from '../styles/app.module.css'
 import React, { useEffect, useRef, useState } from 'react'
 import { Button } from './Button.jsx'
 import { removeRepeatingDelimiters } from '../utils/removeRepeats.js'
-import { tagsArrayFromString } from '../utils/tagsArrayFromString.js'
+
 import { Tags } from './Tags.jsx'
-import { arrayUnique } from '../utils/arrayUnique.js'
+import { arrayFromString } from '../utils/arrayFromString.js'
 
 export function App() {
   const [tags, setTags] = useState([])
@@ -34,18 +34,26 @@ export function App() {
     tail = removeRepeatingDelimiters(tail)
     textValue = textValue.replace(/\s*,\s*/g, ', ')
 
-    let tagsArray = tagsArrayFromString(textValue)
+    let tagsArray = arrayFromString(textValue)
 
     setTextTail(tail)
-    setTags(tagsArray)
+    setTags(makeTagsArray(tagsArray))
   }
 
   function spaceToComma() {
-    const text = tags
-      .join(', ')
+    const text = tagsToString(tags)
       .replace(/[\s,]+/g, ', ')
 
-    setTags(tagsArrayFromString(text))
+    const arr = arrayFromString(text)
+    setTags(makeTagsArray(arr))
+  }
+
+  function makeTagsArray(arr) {
+    return arr
+      .map((item, idx) => ({
+        id: idx,
+        value: item.trim()
+      }))
   }
 
   function handleBlur() {
@@ -61,12 +69,26 @@ export function App() {
   }
 
   function removeDuplicates() {
-    setTags(arrayUnique(tags))
+    let distinctTags = []
+    let idx = 0
+    tags.forEach((item) => {
+      if (distinctTags.findIndex(i => i.value === item.value) === -1) {
+        distinctTags.push({
+          id: idx++,
+          value: item.value
+        })
+      }
+    })
+    setTags(distinctTags)
   }
 
   function removeTag(idxToRemove) {
     const updatedTags = tags.filter((i, idx) => idx !== idxToRemove)
     setTags(updatedTags)
+  }
+
+  function tagsToString(tags) {
+    return tags.map(i => i.value).join(', ')
   }
 
   return (
@@ -87,7 +109,7 @@ export function App() {
         onChange={handleTextChange}
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
-        value={tags.join(', ') + textTail}
+        value={tagsToString(tags) + textTail}
         ref={textarea}
       />
 
