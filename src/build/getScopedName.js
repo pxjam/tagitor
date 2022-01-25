@@ -1,6 +1,6 @@
 import incstr from 'incstr'
 
-const createUniqueIdGenerator = (alphabet) => {
+function createUniqueIdGenerator(alphabet) {
   const uniqIds = {}
 
   const generateNextId = incstr.idGenerator({ alphabet })
@@ -17,6 +17,6 @@ const createUniqueIdGenerator = (alphabet) => {
 const alphabet = 'abcefghijklmnopqrstuvwxyzABCEFGHJKLMNOPQRSTUVWXYZ'
 const classNameGenerator = createUniqueIdGenerator(alphabet)
 
-export const getScopedName = (moduleName, localName) => {
+export function getScopedName(moduleName, localName) {
   return classNameGenerator(`${moduleName}_${localName}`)
 }

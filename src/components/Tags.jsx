@@ -3,26 +3,26 @@ import { cls } from '../utils/cls.js'
 import React, { useRef, useState } from 'react'
 // import { arrayMove } from '../utils/arrayMove.js'
 
-export const Tags = ({ tags, onClickRemove, setTags }) => {
+export function Tags({ tags, onClickRemove, setTags }) {
   const [removeHoveredIdx, setRemoveHoveredIdx] = useState(false)
   const selected = useRef(null)
   const container = useRef(null)
 
-  const dragStart = (e) => {
+  function dragStart(e) {
     e.dataTransfer.effectAllowed = 'move'
     e.dataTransfer.setData('text/plain', null)
     selected.current = e.target
     selected.current.style.opacity = 0.5
   }
 
-  const dragEnd = () => {
+  function dragEnd() {
     selected.current.style.opacity = 1
     selected.current = null
     // todo set tags state
     // setTags()
   }
 
-  const dragOver = (e) => {
+  function dragOver(e) {
     if (!selected.current) return
 
     if (isBefore(selected.current, e.target)) {
@@ -32,7 +32,7 @@ export const Tags = ({ tags, onClickRemove, setTags }) => {
     }
   }
 
-  const isBefore = (el1, el2) => {
+  function isBefore(el1, el2) {
     let cur
     if (el2.parentNode === el1.parentNode) {
       for (cur = el1.previousSibling; cur; cur = cur.previousSibling) {

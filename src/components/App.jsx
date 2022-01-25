@@ -23,11 +23,11 @@ export function App() {
     save()
   }, [tags])
 
-  const save = () => {
+  function save() {
     localStorage.setItem('tags', JSON.stringify(tags))
   }
 
-  const handleTextChange = ({ target: { value } }) => {
+  function handleTextChange({ target: { value } }) {
     let textValue = value
     let tail = textValue.match(/\s*,*\s*$/)[0]
 
@@ -40,7 +40,7 @@ export function App() {
     setTags(tagsArray)
   }
 
-  const spaceToComma = () => {
+  function spaceToComma() {
     const text = tags
       .join(', ')
       .replace(/[\s,]+/g, ', ')
@@ -48,9 +48,11 @@ export function App() {
     setTags(tagsArrayFromString(text))
   }
 
-  const handleBlur = () => setTextTail('')
+  function handleBlur() {
+    setTextTail('')
+  }
 
-  const handleKeyDown = (e) => {
+  function handleKeyDown(e) {
     const allowedChars = /[0-9А-яЁёA-Za-z_@\-',.\s]/
 
     if (!allowedChars.test(e.key)) {
@@ -58,9 +60,11 @@ export function App() {
     }
   }
 
-  const removeDuplicates = () => setTags(arrayUnique(tags))
+  function removeDuplicates() {
+    setTags(arrayUnique(tags))
+  }
 
-  const removeTag = (idxToRemove) => {
+  function removeTag(idxToRemove) {
     const updatedTags = tags.filter((i, idx) => idx !== idxToRemove)
     setTags(updatedTags)
   }

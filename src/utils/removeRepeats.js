@@ -1,3 +1,5 @@
-export const removeRepeatingDelimiters = (string) => string
-  .replace(/\s+/g, ' ')
-  .replace(/,+/g, ',')
+export function removeRepeatingDelimiters(string) {
+  return string
+    .replace(/\s+/g, ' ')
+    .replace(/,+/g, ',')
+}

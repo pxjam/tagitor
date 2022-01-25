@@ -1,1 +1,3 @@
-export const cls = (...classes) => classes.filter(i => !!i).join(' ')
+export function cls(...classes) {
+  return classes.filter(i => !!i).join(' ')
+}
