@@ -7,7 +7,8 @@ export function Tags({ tags, onClickRemove, setTags }) {
   const [dragItem, setDragItem] = useState()
   const container = useRef(null)
 
-  const handleDragStart = (index) => {
+  const handleDragStart = (e, index) => {
+    e.dataTransfer.setData('text/plain','')
     setDragItem(index)
   }
 
@@ -31,7 +32,7 @@ export function Tags({ tags, onClickRemove, setTags }) {
         <div
           className={cls(css.tag, idx === removeHoveredIdx && css.danger)}
           draggable={idx !== removeHoveredIdx}
-          onDragStart={() => handleDragStart(idx)}
+          onDragStart={(e) => handleDragStart(e, idx)}
           onDragEnter={(e) => handleDragEnter(e, idx)}
           onDragLeave={(e) => handleDragLeave(e)}
           key={`${idx}`}
