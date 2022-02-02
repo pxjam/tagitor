@@ -1,47 +1,28 @@
 import css from '../styles/tags.module.css'
 import { cls } from '../utils/cls.js'
 import React, { useRef, useState } from 'react'
-import { arrayMove } from '../utils/arrayMove.js'
 
 export function Tags({ tags, onClickRemove, setTags }) {
   const [removeHoveredIdx, setRemoveHoveredIdx] = useState(false)
-  const selected = useRef(null)
+  const [dragItem, setDragItem] = useState()
   const container = useRef(null)
 
-  function dragStart(e) {
-    e.dataTransfer.effectAllowed = 'move'
-    e.dataTransfer.setData('text/plain', null)
-    selected.current = e.target
-    selected.current.style.opacity = 0.5
+  const handleDragStart = (index) => {
+    setDragItem(index)
   }
 
-  function dragEnd() {
-    selected.current.style.opacity = 1
-    selected.current = null
-    // todo set tags state
-    // setTags()
+  const handleDragEnter = (e, index) => {
+    e.target.style.opacity = '.5'
+    const newTags = [...tags]
+    const item = newTags[dragItem]
+    newTags.splice(dragItem, 1)
+    newTags.splice(index, 0, item)
+    setDragItem(index)
+    setTags(newTags)
   }
 
-  function dragOver(e) {
-    if (!selected.current) return
-
-    if (isBefore(selected.current, e.target)) {
-      container.current.insertBefore(selected.current, e.target)
-      //setTags(arrayMove(tags, ))
-    } else {
-      container.current.insertBefore(selected.current, e.target.nextSibling)
-    }
-
-  }
-
-  function isBefore(el1, el2) {
-    let cur
-    if (el2.parentNode === el1.parentNode) {
-      for (cur = el1.previousSibling; cur; cur = cur.previousSibling) {
-        if (cur === el2) return true
-      }
-    }
-    return false
+  const handleDragLeave = (e) => {
+    e.target.style.opacity = '1'
   }
 
   return (
@@ -50,9 +31,9 @@ export function Tags({ tags, onClickRemove, setTags }) {
         <div
           className={cls(css.tag, idx === removeHoveredIdx && css.danger)}
           draggable={idx !== removeHoveredIdx}
-          onDragStart={dragStart}
-          onDragEnd={dragEnd}
-          onDragOver={dragOver}
+          onDragStart={() => handleDragStart(idx)}
+          onDragEnter={(e) => handleDragEnter(e, idx)}
+          onDragLeave={(e) => handleDragLeave(e)}
           key={`${idx}`}
         >
           {tag.value}
